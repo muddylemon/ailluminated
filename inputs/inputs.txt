@@ -1,0 +1,3 @@
+store the input files here
+ex.
+inputs/myproject/myproject.txt myproject.mp3 
