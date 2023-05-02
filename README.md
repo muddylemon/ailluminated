@@ -24,45 +24,77 @@ these videos in this repo.
 [![Howl by Allen Ginsberg](https://img.youtube.com/vi/PNXCImQ86vQ/0.jpg)](https://www.youtube.com/watch?v=PNXCImQ86vQ "Howl by Allen Ginsberg")
 
 
-## Getting Started
+# Ailluminated
 
-1. Clone this repo
-    
-    `git clone git@github.com:muddylemon/ailluminated.git` 
+Ailluminated is a Python-based video creation tool that combines images, audio, and subtitles into captivating videos with smooth crossfade transitions. It is designed to be versatile and user-friendly, suitable for various applications such as artistic videos, educational content, or memory preservation.
 
-2. Create a virtual environment: 
+## Features
 
-        python -m venv ail
-        source ./ail/bin/activate
-        pip install -r requirements
+- Timestamp-based image and subtitle integration
+- Crossfade transitions between images
+- Customizable frame rate and output format
 
-5. Acquire your source material
+## Installation
 
-    ex. `yt-dlp youtube.com/w=xxx -f 18`
+1. Clone the repository:
 
-6. Create a timestamp file
+```
+git clone https://github.com/muddylemon/ailluminated.git
+```
 
-    6.1 Download the srt file from youtube
+2. Change to the `ailluminated` directory:
 
-    6.2 or, use tap_ts.py to create a timestamp file
+```
+cd ailluminated
+```
 
-7. Create a prompt file from your timestamp file
+3. Install the required Python libraries:
 
-    `python prompt.py`
+```
+pip install -r requirements.txt
+```
 
-    follow instructions to prefix and suffix the lines
+## Usage
 
-8. Process the prompts through Stable Diffusion
+1. Prepare your images, audio, and a text file with timestamps and corresponding subtitles. Place the images in a folder and ensure they are named sequentially (e.g., `img01.jpg`, `img02.jpg`).
 
-9. Illustrate the material
+2. Use the `convert_srt.py` script to convert an SRT subtitle file into a timestamp-based text file:
 
-    `python -m illustrate.py --lines inputs/your-file.txt --audio inputs/your-file.mp4 --images 'path/to/your/images'`
+```
+python convert_srt.py <input_srt_file> <output_timestamps_file>
+```
 
-10. Checkout the result and adjust your timestamps as necessary
+Example:
 
-## Input material
+```
+python convert_srt.py inputs/my-video.srt inputs/my-video.txt
+```
 
-1. Audio file - mp3 or mp4, etc, 
-2. yt-dlp
-3. timestamps text
-4. srt files
+3. Run the `illustrate.py` script to create your video:
+
+```
+python illustrate.py --images <path_to_images_folder> --audio <path_to_audio_file> --lines <path_to_text_file_with_timestamps> [--fps <frame_rate>]
+```
+
+Example:
+
+```
+python illustrate.py --images images_folder --audio audio.mp3 --lines timestamps.txt --fps 24
+```
+
+4. The output video will be saved in the `videos` folder with the same name as the images folder.
+
+## Contributing
+
+We welcome contributions to improve Ailluminated! If you'd like to contribute, please follow these steps:
+
+1. Fork the repository
+2. Create a new branch with your changes
+3. Submit a pull request
+
+We will review your changes and merge them if they are suitable.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
